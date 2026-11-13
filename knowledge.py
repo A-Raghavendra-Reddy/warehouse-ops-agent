@@ -5,7 +5,8 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
 SOP_PATH = Path(__file__).parent / "data" / "sops.txt"
-RELEVANCE_THRESHOLD = 0.3
+RELEVANCE_THRESHOLD = 0.25   # absolute floor: is it relevant at all?
+RELATIVE_MARGIN = 0.1        # keep only results close to the best match
 
 
 def load_sop_chunks():
@@ -16,12 +17,9 @@ def load_sop_chunks():
     for section in sections:
         section = section.strip()
         if not section.startswith("SOP-"):
-            continue  # skip the document title
+            continue
         sop_id = section.split()[0]
-        chunks.append(Document(
-            page_content=section,
-            metadata={"source": SOP_PATH.name, "sop_id": sop_id},
-        ))
+        chunks.append(Document(page_content=section, metadata={"source": SOP_PATH.name, "sop_id": sop_id}))
     return chunks
 
 
@@ -37,4 +35,8 @@ vectorstore = Chroma.from_documents(
 
 def search(query, k=3):
     results = vectorstore.similarity_search_with_relevance_scores(query, k=k)
-    return [doc for doc, score in results if score >= RELEVANCE_THRESHOLD]
+    if not results:
+        return []
+    top_score = results[0][1]
+    return [doc for doc, score in results
+            if score >= RELEVANCE_THRESHOLD and score >= top_score - RELATIVE_MARGIN]

@@ -50,7 +50,10 @@ def create_ticket(asin: str, issue: str, severity: str) -> str:
 @tool
 def search_sops(query: str) -> str:
     """Search the warehouse standard operating procedures (SOPs).
-    Use this for any question about what process to follow or how to handle a situation."""
+    Use this whenever the user asks how to handle something OR describes a problem
+    or situation, such as a count mismatch, a missing pallet, a damaged item or a
+    system not syncing, even if they don't explicitly ask for a procedure.
+    Write the query as a short description of the problem."""
     docs = search(query)
     if not docs:
         return "No relevant SOP found."
