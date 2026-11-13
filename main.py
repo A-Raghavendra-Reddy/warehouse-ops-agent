@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()  # load the API key before anything that needs it
+
 from agent import build_agent
 
 

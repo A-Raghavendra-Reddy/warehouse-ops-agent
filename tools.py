@@ -1,6 +1,7 @@
 from pathlib import Path
 import pandas as pd
 from langchain.tools import tool
+from knowledge import search
 
 DATA_PATH = Path(__file__).parent / "data" / "inventory.csv"
 inventory = pd.read_csv(DATA_PATH)
@@ -44,3 +45,13 @@ def create_ticket(asin: str, issue: str, severity: str) -> str:
     ticket_id = f"WH-{1000 + len(tickets) + 1}"
     tickets.append({"id": ticket_id, "asin": asin, "issue": issue, "severity": severity})
     return f"Ticket {ticket_id} created for {asin} ({severity}): {issue}"
+
+
+@tool
+def search_sops(query: str) -> str:
+    """Search the warehouse standard operating procedures (SOPs).
+    Use this for any question about what process to follow or how to handle a situation."""
+    docs = search(query)
+    if not docs:
+        return "No relevant SOP found."
+    return "\n\n".join(doc.page_content for doc in docs)
