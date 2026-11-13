@@ -1,0 +1,8 @@
+location,asin,product,system_qty,physical_qty
+zone-a,B08XYZ123,Phone Case,450,450
+zone-a,B07LMN789,USB Cable,120,115
+zone-b,B09ABC456,Kettle,230,230
+zone-b,B06QRS321,Desk Lamp,75,75
+zone-c,B05TUV654,Headphones,60,0
+zone-c,B04WXY987,Yoga Mat,40,40
+yard,B03PAL111,Inbound Pallet - Mixed,12,10
