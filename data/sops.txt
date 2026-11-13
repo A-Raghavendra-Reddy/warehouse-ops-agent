@@ -1,0 +1,19 @@
+INBOUND AND ICQA PROCEDURES (SAMPLE)
+
+SOP-01 Cycle Count Discrepancy
+When a cycle count does not match the system quantity, recount the bin once. If the difference remains, check Product History for moves in the last 24 hours. Only adjust the system quantity after both checks are done. Record the adjustment reason in the ticket.
+
+SOP-02 Missing Inbound Pallet
+First check Yard Management to confirm the trailer was checked in. Then physically search the yard, the receive dock and the overflow area. If the pallet is not found within 2 hours, escalate to the inbound lead with the trailer number and PO number.
+
+SOP-03 Damaged Items
+Move damaged units to the damages tote. Scan each unit out of its bin and choose the correct reason code. Photograph severe damage before disposal. Never restow a damaged unit.
+
+SOP-04 Hazmat Handling
+Check the item classification in Hazmat Viewer before stowing. Hazmat items may only be stowed in designated hazmat zones. If the classification is missing, quarantine the item and raise a ticket with the hazmat team.
+
+SOP-05 PO Not Syncing to WMS
+Confirm the PO number is correct. Wait 15 minutes for the next sync cycle. If it is still missing, raise a ticket with the systems team including the PO number, vendor and the time it was first noticed.
+
+SOP-06 Shift Handover
+Before the end of shift, list all open discrepancies and tickets in the handover log. Highlight any CRITICAL items to the incoming lead in person.
