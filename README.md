@@ -81,3 +81,19 @@ Agent: That procedure is not covered in the SOPs.
 - [ ] Evaluation set to measure answer quality
 - [ ] Web interface
 - [ ] Deployment on AWS
+
+## Evaluation
+`evaluate.py` runs 10 test questions covering every SOP, inventory-only questions, combined tool use and refusals. Each test checks which SOPs the answer must and must not cite.
+
+```
+python evaluate.py
+```
+
+| Run | Score | Change |
+|---|---|---|
+| Baseline | 6/10 | — |
+| Retrieval fix | 7/10 | Absolute floor + relative margin on similarity scores |
+| Tool selection fix | 8/10 | Docstring and prompt: always search SOPs when a problem is described; temperature 0 |
+| Test corrections | 10/10 | Refusal check accepts any clear refusal; documented expectation change |
+
+**5. Evals catch what spot-checks miss.** The baseline exposed four different failure types: irrelevant SOPs passing retrieval, a threshold broken by a chunking change, the agent not calling the search tool, and tests too strict on refusal wording. Each was diagnosed from traces and fixed separately, re-running the full set after every change.
